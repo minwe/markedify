@@ -1,0 +1,44 @@
+{
+  "name": "markedify",
+  "version": "0.0.1",
+  "description": "Browserify markdown transform.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Minwe/markedify.git"
+  },
+  "keywords": [
+    "markdown",
+    "browserify",
+    "browserify-transform",
+    "markdown-transform",
+    "marked",
+    "js",
+    "plugin",
+    "transform",
+    "highlight.js"
+  ],
+  "author": {
+    "name": "Minwe",
+    "email": "hegfirose@gmail.com",
+    "url": "http://csspod.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Minwe/markedify/issues"
+  },
+  "homepage": "https://github.com/Minwe/markedify",
+  "dependencies": {
+    "highlight.js": "^8.6.0",
+    "marked": "^0.3.3",
+    "through2": "^0.6.5",
+    "xtend": "^4.0.0"
+  },
+  "devDependencies": {
+    "browserify": "^10.2.3",
+    "mocha": "^2.2.5"
+  }
+}
