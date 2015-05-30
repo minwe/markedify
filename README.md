@@ -1,5 +1,7 @@
 # markedify
 
+[![Build Status](https://travis-ci.org/Minwe/markedify.svg)](https://travis-ci.org/Minwe/markedify)
+
 [Browserify](https://github.com/substack/node-browserify) transform for markdown, uses [marked][] as parser and [highlight.js](https://github.com/isagalaev/highlight.js) for code highlighting.
 
 ```js
