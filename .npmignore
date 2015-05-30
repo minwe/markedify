@@ -1,14 +1,8 @@
 /.idea
 /node_modules
-/dist/docs
-/dist/*.zip
-/utils
-/docs
-CONTRIBUTING.md
 .travis.yml
-gulpfile.js
 .gitignore
 .eslintrc
 .editorconfig
-/bower.json
-/src
+/test
+
