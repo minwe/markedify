@@ -3,6 +3,7 @@
 var assert = require('assert');
 var browserify = require('browserify');
 var markedify = require('../index');
+var marked = require('marked');
 var xtend = require('xtend');
 
 /* global describe,it */
@@ -35,4 +36,24 @@ describe('markedify', function(){
       done();
     });
   });
+
+  it('allows custom renderer', function() {
+    var renderer = new marked.Renderer;
+    var rendererHeading = renderer.heading;
+    renderer.heading = function(text, level) {
+      return 'ALLOWS_CUSTOM_RENDERER' + rendererHeading.apply(this, arguments);
+    };
+
+    browserify('./fixtures/main.js', {
+      basedir: __dirname
+    })
+    .transform([ markedify, { marked: { renderer: renderer } } ])
+    .bundle(function(err, result) {
+      if (err) return done(err);
+      assert(result.toString().
+          indexOf('<h1 id=\\"title\\">title</h1>') > -1);
+      assert(result.toString().indexOf('ALLOWS_CUSTOM_RENDERER') !== -1);
+      done();
+    });
+  })
 });
