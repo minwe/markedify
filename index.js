@@ -6,9 +6,7 @@ var through = require('through2');
 var marked = require('marked');
 var hl = require('highlight.js');
 var xtend = require('xtend');
-var renderer = new marked.Renderer();
-
-renderer.code = function(code, lang) {
+var codeRenderer = function(code, lang) {
   lang = lang === 'js' ? 'javascript' : lang;
   if (lang === 'html') {
     lang = 'xml';
@@ -45,6 +43,7 @@ module.exports = function(file, options) {
     return through();
   }
 
+  var renderer;
   var chunks = [];
   var size = 0;
   var str = '';
@@ -56,11 +55,19 @@ module.exports = function(file, options) {
     callback();
   };
 
+  // using custom renderer
+  if (options.marked && options.marked.renderer) {
+    renderer = options.marked.renderer;
+  } else {
+    renderer = new marked.Renderer();
+    renderer.code = codeRenderer;
+  }
+
   marked.setOptions(xtend({
     renderer: renderer,
     gfm: true,
     pedantic: true
-  }, options.marked || {}));
+  }, options.marked));
 
   var end = function(callback) {
     var data = Buffer.concat(chunks, size).toString();

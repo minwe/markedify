@@ -1,6 +1,6 @@
 {
   "name": "markedify",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Browserify markdown transform.",
   "main": "index.js",
   "scripts": {
@@ -32,13 +32,13 @@
   },
   "homepage": "https://github.com/Minwe/markedify",
   "dependencies": {
-    "highlight.js": "^8.6.0",
-    "marked": "^0.3.3",
-    "through2": "^0.6.5",
+    "highlight.js": "^8.9.1",
+    "marked": "^0.3.5",
+    "through2": "^2.0.0",
     "xtend": "^4.0.0"
   },
   "devDependencies": {
-    "browserify": "^10.2.3",
-    "mocha": "^2.2.5"
+    "browserify": "^11.2.0",
+    "mocha": "^2.3.3"
   }
 }
