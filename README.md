@@ -45,25 +45,28 @@ Read [marked docs][marked] for more details.
 
 ```js
 var browserify = require('browserify');
-var markedify = require('markedify');
 var fs = require('fs');
+var path = require('path');
+var markedify = require('markedify');
 var marked = require('marked');
-var renderer = new marked.Renderer();
-renderer.code = function(code, lang) {
-  // highlighting code
-  return code;
-}
+var highlight = require('highlight.js')
 
+marked.setOptions({
+  highlight: function(code, lang) {
+    return highlight.highlight(lang, code).value;
+  }
+});
+
+var renderer = new marked.Renderer();
 var markedOptions = {
   renderer: renderer,
-  gfm: false
 };
 
-browserify('./main.js', {debug: true})
-  .transform(markedify, {marked: markedOptions})
-  .bundle()
-  .on('error', function (err) {console.log('Error: ' + err.message); })
-  .pipe(fs.createWriteStream('bundle.js'));
+browserify(path.join(__dirname, 'file.js'))
+.transform(markedify, {marked: markedOptions})
+.bundle()
+.on('error', function(err) { console.log('ERROR: ' + err); })
+.pipe(fs.createWriteStream(path.join(__dirname, 'docs-compiled.js')));
 ```
 
 [marked]:https://github.com/chjj/marked
